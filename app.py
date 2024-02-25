@@ -4,7 +4,7 @@ import pickle
 import streamlit as st
 
 # loading the trained model
-pickle_in = open('/content/drive/MyDrive/Saved_Model/rf_1_model.pkl', 'rb') 
+pickle_in = open('rf_1.pkl', 'rb') 
 classifier = pickle.load(pickle_in)
 
 
