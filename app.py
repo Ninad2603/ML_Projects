@@ -4,7 +4,7 @@ import pickle
 import streamlit as st
 
 # loading the trained model
-pickle_in = open('rf_1.pkl', 'rb') 
+pickle_in = open('https://github.com/Ninad2603/ML_Projects/blob/main/rf_1.pkl', 'rb') 
 classifier = pickle.load(pickle_in)
 
 
