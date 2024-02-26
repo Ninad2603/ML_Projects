@@ -34,15 +34,19 @@ def main():
     st.markdown("""
         <style>
         .yellow-box {
-        border: 1px solid #ffcc00;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px 0;
-        background-color: #fff9e6;  /* Light yellow background */
-    }
+            border: 2px solid #ffcc00;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #fff9e6;
+        }
+        h2 {
+            color: #ffcc00;
+            text-align: center;
+        }
         </style>
         <div class="yellow-box">
-        <h2 style="color: #ffcc00;">Company Bankruptcy Prediction</h2>
+            <h2>Company Bankruptcy Prediction</h2>
         </div>
         """, unsafe_allow_html=True)
 
