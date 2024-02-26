@@ -31,21 +31,43 @@ classifier = joblib.load(BytesIO(requests.get(URI).content))
 # this is the main function in which we define our app
 def main():
     # header of the page
-    st.markdown("Company Bankrupcy Prediction")
+    st.markdown("""
+        <style>
+        .yellow-box {
+        border: 1px solid #ffcc00;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+        background-color: #fff9e6;  /* Light yellow background */
+    }
+        </style>
+        <div class="yellow-box">
+        <h2 style="color: #ffcc00;">Company Bankruptcy Prediction</h2>
+        </div>
+        """, unsafe_allow_html=True)
 
     # 2. Loading the data
+    # Create two columns
+    col1, col2 = st.columns(2)
 
-    X9  = st.number_input("After-tax net Interest Rate")
-    X11 = st.number_input("Continuous interest rate_(after tax)")
-    X14 = st.number_input("Cash flow rate")
-    X19 = st.number_input("Net Value Per Share (C)")
-    X34 = st.number_input("Current Ratio")
-    X36 = st.number_input("Interest Expense Ratio")
-    X47 = st.number_input("Accounts Receivable Turnover")
-    X49 = st.number_input("Inventory Turnover Rate (times)")
-    X59 = st.number_input("Quick Assets/Current Liability")
-    X95 = st.selectbox('Net Income Flag',("0","1"))
+    # First column
+    with col1:
+        X9  = st.number_input("After-tax net Interest Rate")
+        X11 = st.number_input("Continuous interest rate_(after tax)")
+        X14 = st.number_input("Cash flow rate")
+        X19 = st.number_input("Net Value Per Share (C)")
+        X34 = st.number_input("Current Ratio")
 
+    # Second column
+    with col2:
+        X36 = st.number_input("Interest Expense Ratio")
+        X47 = st.number_input("Accounts Receivable Turnover")
+        X49 = st.number_input("Inventory Turnover Rate (times)")
+        X59 = st.number_input("Quick Assets/Current Liability")
+        X95 = st.selectbox('Net Income Flag',("0","1"))
+
+    
+    
     result =""
 
     # when 'Check' is clicked, make the prediction and store it
