@@ -2,7 +2,7 @@
 # importing required libraries
 import pickle
 import streamlit as st
-import joblib
+# import joblib
 from io import BytesIO
 
 import requests # or https
@@ -16,7 +16,7 @@ import requests # or https
 # STOPWORDS = joblib.load(BytesIO(requests.get(URI).content))
 # loading the trained model
 URI = 'https://raw.githubusercontent.com/Ninad2603/ML_Projects/raw/main/rf_1.pkl'
-pickle_in = open(joblib.load(BytesIO(requests.get(URI).content)), 'rb') 
+pickle_in = open(BytesIO(requests.get(URI).content), 'rb') 
 classifier = pickle.load(pickle_in)
 
 
