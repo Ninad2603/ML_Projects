@@ -70,29 +70,30 @@ def main():
         X59 = st.number_input("Quick Assets/Current Liability")
         X95 = st.selectbox('Net Income Flag',("0","1"))
 
-    
-    
     result =""
 
-    # when 'Check' is clicked, make the prediction and store it
     if st.button("Check"):
-        result = prediction([X9, X11, X14, X19, X34, X36, X47, X49, X59, X95])
-        st.success('Your loan is {}'.format(result))
+        result = prediction(X9, X11, X14, X19, X34, X36, X47, X49, X59, X95)
+        st.success('The probability of bankruptcy is {}'.format(result))
 
 # defining the function which will make the prediction using the data which the user inputs 
-def prediction(Gender, Married, ApplicantIncome, LoanAmount): 
-    # header of the page
-    st.markdown("Company Bankruptcy Prediction")
+def prediction(X9, X11, X14, X19, X34, X36, X47, X49, X59, X95): 
+    # Convert string inputs to the correct data type if necessary
+    X95 = int(X95)  # Assuming 'Net Income Flag' should be an integer
 
-    prediction = classifier.predict([['X9', 'X11', 'X14', 'X19', 'X34', 'X36', 'X47', 'X49', 'X59', 'X95']])
-     
-    # Get the probability of the positive class (Approved)
-    probability_approved = prediction_proba[0, 1]
+    # Reshape the input data to match the model's expectations
+    features = [[X9, X11, X14, X19, X34, X36, X47, X49, X59, X95]]
+    
+    # Make the prediction
+    prediction_proba = classifier.predict_proba(features)
+    
+    # Get the probability of the positive class (Bankruptcy)
+    probability_bankruptcy = prediction_proba[0, 1]
 
     # Convert probability to percentage
-    confidence_percentage = round(probability_approved * 100, 2)
+    confidence_percentage = round(probability_bankruptcy * 100, 2)
 
-    return f" Company to get bankrupted is {confidence_percentage} percentage"
+    return f"probability of the company getting bankrupt is {confidence_percentage}%"
 
 if __name__=='__main__':
     main()
