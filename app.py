@@ -2,9 +2,21 @@
 # importing required libraries
 import pickle
 import streamlit as st
+import joblib
+from io import BytesIO
 
+import requests # or https
+
+# e.g. a file call stopwords saved by joblib
+# https://github.com/Proteusiq/hisia/v1.0.1/hisia/models/data/stops.pkl
+
+# change github.com to raw.githubusercontent.com
+
+# URI = "https://raw.githubusercontent.com/Proteusiq/hisia/v1.0.1/hisia/models/data/stops.pkl"
+# STOPWORDS = joblib.load(BytesIO(requests.get(URI).content))
 # loading the trained model
-pickle_in = open('https://github.com/Ninad2603/ML_Projects/raw/main/rf_1.pkl', 'rb') 
+URI = 'https://raw.githubusercontent.com/Ninad2603/ML_Projects/raw/main/rf_1.pkl'
+pickle_in = open(joblib.load(BytesIO(requests.get(URI).content)), 'rb') 
 classifier = pickle.load(pickle_in)
 
 
