@@ -4,6 +4,11 @@ import pickle
 import streamlit as st
 # import joblib
 from io import BytesIO
+import requests
+from io import BytesIO
+import pickle
+import base64
+import joblib
 
 import requests # or https
 
@@ -15,10 +20,13 @@ import requests # or https
 # URI = "https://raw.githubusercontent.com/Proteusiq/hisia/v1.0.1/hisia/models/data/stops.pkl"
 # STOPWORDS = joblib.load(BytesIO(requests.get(URI).content))
 # loading the trained model
-URI = 'https://raw.githubusercontent.com/Ninad2603/ML_Projects/raw/main/rf_1.pkl'
-pickle_in = open(BytesIO(requests.get(URI).content), 'rb') 
-classifier = pickle.load(pickle_in)
-
+# URI = 'https://raw.githubusercontent.com/Ninad2603/ML_Projects/raw/main/rf_1.pkl'
+# pickle_in = open(BytesIO(requests.get(URI).content), 'rb') 
+# classifier = pickle.load(pickle_in)
+URI = 'https://github.com/Ninad2603/ML_Projects/raw/main/rf_1.pkl'
+# pickle_in = open(requests.get(URI).content, 'rb') 
+# classifier = pickle.load(pickle_in)
+classifier = joblib.load(BytesIO(requests.get(URI).content))
 
 # this is the main function in which we define our app
 def main():
